@@ -1,1 +1,125 @@
-{"type":"OberonModule","name":"Assignment","submodules":[],"userTypes":[],"constants":[],"variables":[],"procedures":[{"type":"Procedure","name":"func","args":[{"type":"ParameterByValue","name":"a","argumentType":{"type":"IntegerType$"}},{"type":"ParameterByValue","name":"x","argumentType":{"type":"IntegerType$"}}],"returnType":{"type":"IntegerType$"},"constants":[],"variables":[],"stmt":{"type":"IfElseStmt","condition":{"type":"GTExpression","left":{"type":"VarExpression","name":"a"},"right":{"type":"IntValue","value":4}},"thenStmt":{"type":"SequenceStmt","stmts":[{"type":"AssignmentStmt","designator":{"type":"VarAssignment","varName":"x"},"exp":{"type":"IntValue","value":4}},{"type":"ReturnStmt","exp":{"type":"VarExpression","name":"x"}}]},"elseStmt":{"type":"SequenceStmt","stmts":[{"type":"AssignmentStmt","designator":{"type":"VarAssignment","varName":"x"},"exp":{"type":"IntValue","value":2}},{"type":"ReturnStmt","exp":{"type":"VarExpression","name":"x"}}]}}}],"stmt":{"type":"WriteStmt","expression":{"type":"FunctionCallExpression","name":"func","args":[{"type":"IntValue","value":0},{"type":"IntValue","value":0}]}}}
+{
+  "type": "OberonModule",
+  "name": "ModuleWithArray",
+  "submodules": [],
+  "userTypes": [],
+  "constants": [],
+  "variables": [
+    {
+      "type": "ArrayDeclaration",
+      "name": "myArray",
+      "elementType": {
+        "type": "IntegerType$"
+      },
+      "size": 100
+    }
+  ],
+  "procedures": [
+    {
+      "type": "Procedure",
+      "name": "func",
+      "args": [
+        {
+          "type": "ParameterByValue",
+          "name": "a",
+          "argumentType": {
+            "type": "IntegerType$"
+          }
+        },
+        {
+          "type": "ParameterByValue",
+          "name": "x",
+          "argumentType": {
+            "type": "IntegerType$"
+          }
+        }
+      ],
+      "returnType": {
+        "type": "IntegerType$"
+      },
+      "constants": [],
+      "variables": [],
+      "stmt": {
+        "type": "IfElseStmt",
+        "condition": {
+          "type": "GTExpression",
+          "left": {
+            "type": "VarExpression",
+            "name": "a"
+          },
+          "right": {
+            "type": "IntValue",
+            "value": 4
+          }
+        },
+        "thenStmt": {
+          "type": "SequenceStmt",
+          "stmts": [
+            {
+              "type": "AssignmentStmt",
+              "designator": {
+                "type": "VarAssignment",
+                "varName": "x"
+              },
+              "exp": {
+                "type": "IntValue",
+                "value": 4
+              }
+            },
+            {
+              "type": "ReturnStmt",
+              "exp": {
+                "type": "VarExpression",
+                "name": "x"
+              }
+            }
+          ]
+        },
+        "elseStmt": {
+          "type": "SequenceStmt",
+          "stmts": [
+            {
+              "type": "AssignmentStmt",
+              "designator": {
+                "type": "ArrayAccess",
+                "arrayName": "myArray",
+                "index": {
+                  "type": "IntValue",
+                  "value": 2
+                }
+              },
+              "exp": {
+                "type": "IntValue",
+                "value": 5
+              }
+            },
+            {
+              "type": "ReturnStmt",
+              "exp": {
+                "type": "VarExpression",
+                "name": "x"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "stmt": {
+    "type": "WriteStmt",
+    "expression": {
+      "type": "FunctionCallExpression",
+      "name": "func",
+      "args": [
+        {
+          "type": "IntValue",
+          "value": 5
+        },
+        {
+          "type": "IntValue",
+          "value": 0
+        }
+      ]
+    }
+  }
+}

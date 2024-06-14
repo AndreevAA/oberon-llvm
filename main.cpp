@@ -97,6 +97,35 @@ Value* generate_expression(json exp) {
   return nullptr;
 }
 
+Value* generate_array_access(json exp) {
+    std::string arrayName = exp["arrayName"];
+    Value *index = generate_expression(exp["index"]);
+    Value *arrayPtr = NamedValues[arrayName];
+
+    std::vector<Value*> indices = {ConstantInt::get(Type::getInt32Ty(*TheContext), 0), index};
+    Value *elementPtr = Builder->CreateInBoundsGEP(arrayPtr, indices, "elementPtr");
+
+    return Builder->CreateLoad(Type::getInt32Ty(*TheContext), elementPtr, "elementLoad");
+}
+
+void generate_array_declaration(json statement) {
+    std::string arrayName = statement["name"];
+    auto arrayType = ArrayType::get(Type::getInt32Ty(*TheContext), statement["size"]);
+    AllocaInst *arrayAlloc = Builder->CreateAlloca(arrayType, nullptr, arrayName);
+    NamedValues[arrayName] = arrayAlloc;
+}
+
+void generate_array_assignment(json exp) {
+    std::string arrayName = exp["arrayName"];
+    Value *index = generate_expression(exp["index"]);
+    Value *newValue = generate_expression(exp["value"]);
+    Value *array = NamedValues[arrayName];
+
+    std::vector<Value*> indices = {ConstantInt::get(Type::getInt32Ty(*TheContext), 0), index};
+    Value *elementPtr = Builder->CreateInBoundsGEP(array, indices, "elementPtr");
+    Builder->CreateStore(newValue, elementPtr);
+}
+
 void generate_statement(json statement);
 
 void create_IfElse(json statement){
@@ -210,6 +239,10 @@ void generate_statement(json statement) {
     create_IfElseIf(statement);
   }else if (type=="ElseIfStmt"){
     create_ElseIf(statement);
+  }else if (type == "ArrayDeclaration") {
+    generate_array_declaration(statement);
+  }else if (type == "ArrayAssignment") {
+     generate_array_assignment(statement);
   }else if (type=="ForStmt"){
     create_For(statement);
   }else if (type == "ReturnStmt") {
