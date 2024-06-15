@@ -1,0 +1,9 @@
+MODULE hello;
+VAR n, m, l: INTEGER;
+
+BEGIN
+    l := 10;
+    n := 1 + 1024;
+    m := l + l + n;
+    WriteInt(m);  
+END hello.
