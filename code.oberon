@@ -1,10 +1,13 @@
 MODULE For;
 
-PROCEDURE func(x,y,z,k : INTEGER) : INTEGER;
+PROCEDURE func(x,y,z,k,maxx,maxz : INTEGER) : INTEGER;
 BEGIN
-  FOR x := 0 TO x < 10 DO
+  readInt(maxx);
+  readInt(maxz);
+
+  FOR x := 0 TO x < maxx DO
     write(x);
-    FOR z := 0 TO z < 10 DO
+    FOR z := 0 TO z < maxz DO
       k := z + x;
       z := z + 1;
       write(k)
@@ -15,7 +18,7 @@ BEGIN
 END func
 
 BEGIN
-  write(func(0,0,0,0))
+  write(func(0,0,0,0,0,0))
 END
 
 END For.
