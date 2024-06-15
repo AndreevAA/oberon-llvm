@@ -1,18 +1,24 @@
-MODULE Read;
+MODULE For;
 
-PROCEDURE func(x,y,soma:INTEGER) : INTEGER;
+PROCEDURE func(x,y,z,k,maxx,maxz : INTEGER) : INTEGER;
 BEGIN
-  readInt(x);
-  readInt(y);
+  readInt(maxx);
+  readInt(maxz);
 
-  soma := x + y;
-  write(soma);
-
-  RETURN soma
+  FOR x := 0 TO x < maxx DO
+    write(x);
+    FOR z := 0 TO z < maxz DO
+      k := z + x;
+      z := z + 1;
+      write(k)
+    END;
+    x := x + 1
+  END;
+  RETURN 0
 END func
 
 BEGIN
-  write(func(0,0,0))
+  write(func(0,0,0,0,0,0))
 END
 
-END Read.
+END For.
