@@ -1,10 +1,3 @@
-#include "OberonBaseListener.h"
-#include "OberonBaseVisitor.h"
-#include "OberonLexer.h"
-#include "OberonListener.h"
-#include "OberonParser.h"
-#include "OberonVisitor.h"
-
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/IR/BasicBlock.h"
 #include "llvm/IR/Constants.h"
